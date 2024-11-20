@@ -1,12 +1,15 @@
+version: '3.8'
 services:
-mongodb:
-  container_name: mongodb
-  image: mongo:latest
-  volumes:
-    - mongo-data:/data/db
-  ports:
-    - "27017:27017"
-  restart: unless-stopped
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
-volumes:
-  mongo-data:
+  mongo-client:
+    image: mongo:latest
+    depends_on:
+      - mongodb
+    entrypoint: ["sleep", "infinity"]
