@@ -1,0 +1,12 @@
+{
+  "name": "MongoDB Dev Container Playground",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "mongodb",
+  "forwardPorts": [27017],
+  "customizations": {
+    "vscode": {
+        "extensions": ["mongodb.mongodb-vscode"]
+    }
+  },
+  "postCreateCommand": "mongo --eval 'db.runCommand({ connectionStatus: 1 })'"
+}
